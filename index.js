@@ -4,6 +4,7 @@ import { connectToDB } from "./db.js";
 import authRouter from "./routes/authRouter.routes.js";
 import patientRouter from "./routes/patientRouter.routes.js";
 import doctorRouter from "./routes/doctorRouter.routes.js";
+import mappingRouter from "./routes/mappingRouter.routes.js";
 
 const app = express();
 app.use(express.json());
@@ -18,6 +19,7 @@ try {
 app.use("/api/auth", authRouter);
 app.use("/api/patients", patientRouter);
 app.use("/api/doctors", doctorRouter);
+app.use("/api/mappings", mappingRouter);
 
 const port = process.env.PORT;
 app.listen(port, () => {

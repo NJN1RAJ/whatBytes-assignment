@@ -67,8 +67,8 @@ export const DoctorModel = sequelize.define("Doctor", {
   },
 });
 
-UserModel.hasMany(PatientModel);
-PatientModel.belongsTo(UserModel);
+UserModel.hasMany(PatientModel, { foreignKey: "UserId" });
+PatientModel.belongsTo(UserModel, { foreignKey: "UserId" });
 
 export const MappingModel = sequelize.define("Mapping", {
   id: {
@@ -76,20 +76,20 @@ export const MappingModel = sequelize.define("Mapping", {
     autoIncrement: true,
     primaryKey: true,
   },
-  PatientId: {
+  patientId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  DoctorId: {
+  doctorId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
 });
 
-PatientModel.hasMany(MappingModel, { foreignKey: "PatientId" });
-DoctorModel.hasMany(MappingModel, { foreignKey: "DoctorId" });
-MappingModel.belongsTo(DoctorModel, { foreignKey: "DoctorId" });
-MappingModel.belongsTo(PatientModel, { foreignKey: "PatientId" });
+PatientModel.hasMany(MappingModel, { foreignKey: "patientId" });
+DoctorModel.hasMany(MappingModel, { foreignKey: "doctorId" });
+MappingModel.belongsTo(DoctorModel, { foreignKey: "doctorId" });
+MappingModel.belongsTo(PatientModel, { foreignKey: "patientId" });
 
 export const connectToDB = async () => {
   try {
