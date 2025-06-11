@@ -94,7 +94,7 @@ MappingModel.belongsTo(PatientModel, { foreignKey: "PatientId" });
 export const connectToDB = async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
     console.log("Connection has been established successfully.");
     console.log("All the models have been synced");
   } catch (error) {
