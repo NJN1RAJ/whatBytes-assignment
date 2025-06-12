@@ -1,9 +1,12 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import { DataTypes, Sequelize } from "sequelize";
 import bcrypt from "bcryptjs";
 
-const sequelize = new Sequelize(
-  "postgresql://healthcare-backend_owner:npg_gvlZ5aSk4onw@ep-damp-thunder-a1xmheu1-pooler.ap-southeast-1.aws.neon.tech/healthcare-backend?sslmode=require"
-);
+const sequelize = new Sequelize(`${process.env.DB_URI}`, {
+  dialect: "postgres",
+});
 
 export const UserModel = sequelize.define("User", {
   id: {

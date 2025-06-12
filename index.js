@@ -1,10 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
-import { connectToDB } from "./db.js";
 import authRouter from "./routes/authRouter.routes.js";
 import patientRouter from "./routes/patientRouter.routes.js";
 import doctorRouter from "./routes/doctorRouter.routes.js";
 import mappingRouter from "./routes/mappingRouter.routes.js";
+import { connectToDB } from "./db.js";
 
 const app = express();
 app.use(express.json());

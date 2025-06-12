@@ -158,6 +158,19 @@ export const deleteDoctorFromPatient = async (req, res) => {
       });
     }
 
+    const mappingExists = await MappingModel.findOne({
+      where: {
+        patientId: patientId,
+        doctorId: doctorId,
+      },
+    });
+
+    if (!mappingExists) {
+      return res.status(400).json({
+        error: "No such mapping exists",
+      });
+    }
+
     await MappingModel.destroy({
       where: {
         patientId: patientId,
